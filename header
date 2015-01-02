@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <title>Puffy Security</title>
+    <meta name="resource-type" content="document">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+    <meta name="description" content="the main page">
+    <meta name="keywords" content="openbsd,main">
+    <meta name="distribution" content="global">
+    <meta name="copyright" content="This document copyright 2015 by Thomas Dwyer http://tomd.tel.">
+    <link rel="shortcut icon" HREF="/favicon.ico" TYPE="image/x-icon">
+</head>
+<body text="#000000" bgcolor="#ffffff" topmargin=0 leftmargin=0 marginheight=0 marginwidth=0>
+  <table width="100%" height="100%" border="0" cellspacing="0" cellpadding="4">
+  <tr>
+    <td bgcolor="#6bbdd6" rowspan="2" valign=top>
+      <big><b>Site Index</b></big><br>
+        &nbsp;<a href="/index.html">Home</a><br>
+        &nbsp;<a href="/wiki/index.html">Wiki</a><br>
+        &nbsp;<a href="/blog/index.html">Blog</a><br>
+        &nbsp;<a href="/quotes/index.html">Quotes & Analogies</a><br>
+      <p>
+
+      <big><b>External Links</b></big><br>
+        &nbsp;<a href="http://tomd.tel" target="_blank">Personal Directory</a><br>
+        &nbsp;<a href="https://github.com/tdwyer" target="_blank">Git Hub Page</a><br>
+      <p>
+
+      <big><b>Search Site</b></big><br>
+      <form method=GET action="http://www.google.com/search">
+      <input type="text" name="q" maxlength="255" value="">
+      <input type="hidden" name="domains" value="www.openbsd.org">
+      <input type="hidden" name="sitesearch" value="www.openbsd.org">
+      <input type="submit" name="btnG" value="Search">
+      </form>
+      <p>
+    </td>
+    <td bgcolor="#007b9c" rowspan="2"><font size="1">&nbsp;</font></td>
+    <td bgcolor="#ffffff" valign="top">
+      <center>
+        <h1><b>Puffy Security</b></h1>
+      </center>
+      <br>
+      <center>
+        <strong>
+          <font color="#e00000">
+            The thoughts expressed here are mine and mine alone... <i>unfortunately</i>
+            <br>
+          </font>
+        </strong>
+      </center>
+

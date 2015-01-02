@@ -1,0 +1,122 @@
+#!/usr/bin/awk -f
+#
+###############################################################################
+#                                                                             #
+# Copyright (c) 2014-2015 Thomas Dwyer. All rights reserved.                  #
+#                                                                             #
+# Redistribution and use in source and binary forms, with or without          #
+# modification, are permitted provided that the following conditions          #
+# are met:                                                                    #
+# 1. Redistributions of source code must retain the above copyright           #
+#    notice, this list of conditions and the following disclaimer.            #
+# 2. Redistributions in binary form must reproduce the above copyright        #
+#    notice, this list of conditions and the following disclaimer in the      #
+#    documentation and/or other materials provided with the distribution.     #
+#                                                                             #
+# THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR        #
+# IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES   #
+# OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.     #
+# IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,            #
+# INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT    #
+# NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,   #
+# DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY       #
+# THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT         #
+# (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF    #
+# THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.           #
+#                                                                             #
+###############################################################################
+#
+
+BEGIN {
+  CAT_BIN="/bin/cat"
+  MARKDOWN_BIN="/usr/local/bin/markdown_py"
+  MKDIR_BIN="/bin/mkdir"
+  FIND_BIN="/usr/bin/find"
+  #
+  HTML_DIR="/var/www/htdocs/main"
+  MARKDOWN_DIR="/var/www/markdown"
+  TEMP_FILE="/tmp/temp.html"
+  TEMPLET_HEAD="/var/www/markdown/header"
+  TEMPLET_BOTTOM="/var/www/markdown/footer"
+  #
+  _main()
+  exit
+}
+
+function _main(  cmd,rv) {
+  #
+  #
+  #
+  _getFiles()
+  _update(1)
+}
+
+function _getFiles(  cmd,rv,n) {
+  #
+  #
+  #
+  cmd=(FIND_BIN" "MARKDOWN_DIR" -type f -name \"*\.md\" ")
+  while((cmd | getline line) > 0) {
+    n+=1
+    Markdown_Files[n]=line
+  }; close(cmd)
+  if (ERRNO) {
+    MESSAGE=(MESSAGE"Failed to get markdown file list")
+    exit
+  }
+  return ""
+}
+
+function _update(n,  cmd,rv,filePath,file) {
+  #
+  #
+  #
+  rv=_compileMarkdown(Markdown_Files[n])
+
+  sub(MARKDOWN_DIR,"",Markdown_Files[n])
+  split(Markdown_Files[n],filePath,"/")
+
+  file=filePath[length(filePath)]
+  dirPath=(HTML_DIR Markdown_Files[n])
+
+  sub(file,"",dirPath)
+  sub("\\.md",".html",file)
+
+  if (length(filePath) > 1) {
+    cmd=(MKDIR_BIN" -p "dirPath)
+    rv=system(cmd); close(cmd)
+    if (rv) {
+      MESSAGE=(MESSAGE"Failed to create path")
+      exit
+    }
+  }
+
+  #
+  cmd=(CAT_BIN" "TEMPLET_HEAD" > "dirPath""file)
+  cmd=(cmd" && "CAT_BIN" "TEMP_FILE" >> "dirPath""file)
+  cmd=(cmd" && "CAT_BIN" "TEMPLET_BOTTOM" >> "dirPath""file)
+  rv=system(cmd); close(cmd)
+  if (rv) {
+    MESSAGE=(MESSAGE"Failed to update html")
+    exit
+  }
+
+  n+=1
+  if (n > length(Markdown_Files) ) {
+    exit
+  }
+  else {
+    _update(n)
+  }
+  return ""
+}
+
+function _compileMarkdown(markdownFile,  cmd,rv) {
+  cmd=(MARKDOWN_BIN" -f "TEMP_FILE" "markdownFile)
+  rv=system(cmd); close(cmd)
+  if (rv) {
+    MESSAGE=(MESSAGE"Failed to update html")
+  }
+  return rv
+}
+

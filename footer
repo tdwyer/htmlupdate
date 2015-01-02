@@ -1,0 +1,36 @@
+    </td>
+  </tr>
+    <tr>
+      <td bgcolor="#ffffff" valign="bottom">
+      <table border=0 width="100%"><tr>
+      <td>
+        <hr>
+        Use these projects as your starting point.
+        <br>
+        <a href="http://www.openbsd.org" target="_blank">OpenBSD</a>,
+        <a href="http://www.openssh.com" target="_blank">OpenSSH</a>,
+        <a href="http://www.openbgpd.org" target="_blank">OpenBGPD</a>,
+        <a href="http://www.openntpd.org" target="_blank">OpenNTPD</a>,
+        <a href="http://www.opensmtpd.org" target="_blank">OpenSMTPD</a>,
+        <a href="http://www.openiked.org" target="_blank">OpenIKED</a>,
+        <a href="http://mdocml.bsd.lv" target="_blank">mandoc</a>,
+        <a href="http://www.libressl.org" target="_blank">LibreSSL</a>
+        <br>
+        Mirrors, by country:
+        <a href="http://openbsd.md5.com.ar/" target="_blank">AR</a>
+        <a href="http://www.openbsd.org/" target="_blank">CA</a>
+        <a href="http://openbsd.comstyle.com/" target="_blank">CA</a>
+        <a href="http://www.openbsd.dk/" target="_blank">DK</a>
+        <a href="http://www.openbsd.org.my/" target="_blank">MY</a>
+        <a href="http://openbsd.aise.re/" target="_blank">RE</a>
+        <a href="http://www.obsd.si/" target="_blank">SI</a>
+        <br>
+        <small>
+        <em>This site Copyright &copy; 2015 Thomas Dwyer .</em><br>
+        <br>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
+
